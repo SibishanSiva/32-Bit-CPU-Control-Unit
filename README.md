@@ -11,4 +11,4 @@ This project is a VHDL-based 32-Bit CPU Control Unit designed and verified using
 * Complete control signal table covering CLR/LD for registers A, B, C, Z, PC load/increment, ALU opcode, EN/WEN, A/B MUX, REG MUX, DATA MUX, IM_MUX1, and IM_MUX2 for every supported instruction.
 * Full functional simulation waveforms validating correct control signal output for all 25+ instructions across all three execution states.
 
-## | Waveform Simulations | ![Link](waveform.pdf) |
+## | Waveform Simulations | ![Link](waveforms.pdf) |
