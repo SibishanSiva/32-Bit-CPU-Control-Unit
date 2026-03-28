@@ -11,4 +11,34 @@ This project is a VHDL-based 32-Bit CPU Control Unit designed and verified using
 * Complete control signal table covering CLR/LD for registers A, B, C, Z, PC load/increment, ALU opcode, EN/WEN, A/B MUX, REG MUX, DATA MUX, IM_MUX1, and IM_MUX2 for every supported instruction.
 * Full functional simulation waveforms validating correct control signal output for all 25+ instructions across all three execution states.
 
+## Instruction Control Signal Table
+
+| INST | CLR_IR / LD_IR | LD_PC / INC_PC | CLR_A / LD_A | CLR_B / LD_B | CLR_C / LD_C | CLR_Z / LD_Z | ALU OP | EN / WEN | A/B MUX | REG MUX | Data MUX | IM_MUX1 / IM_MUX2 |
+|------|----------------|----------------|--------------|--------------|--------------|--------------|--------|----------|---------|---------|----------|-------------------|
+| LDA  | 0/1 | 0/0 | 0/1 | 0/0 | 0/0 | 0/0 | XXX | 1/1 | 1/0 | 1 | 00 | x/xx |
+| LDB  | 0/1 | 0/0 | 0/0 | 0/1 | 0/0 | 0/0 | XXX | 1/1 | 0/1 | 1 | 00 | x/xx |
+| STA  | 0/1 | 0/0 | 0/1 | 0/0 | 0/0 | 0/0 | XXX | 1/1 | 1/0 | 0 | 00 | x/xx |
+| STB  | 0/1 | 0/0 | 0/0 | 0/1 | 0/0 | 0/0 | XXX | 1/1 | 0/1 | 1 | 00 | x/xx |
+| JMP  | 0/1 | 1/0 | xx | xx | xx | xx | XXX | xx | xx | x | 00 | x/xx |
+| LDAI | 0/1 | 0/0 | 0/1 | 0/0 | 0/0 | 0/0 | XXX | 0/0 | 1/0 | 0 | 00 | x/xx |
+| LDBI | 0/1 | 0/0 | 0/0 | 0/1 | 0/0 | 0/0 | XXX | 0/0 | 0/1 | 0 | 00 | x/xx |
+| LUI  | 0/1 | 0/0 | 0/1 | 1/0 | 0/0 | 0/0 | 001 | 0/0 | 0/0 | 0 | 10 | 1/00 |
+| ANDI | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 000 | x/x | 1/0 | x | 10 | 0/01 |
+| DECA | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 110 | x/x | 1/0 | x | 10 | 0/10 |
+| ADD  | 0/1 | 0/0 | 0/1 | 0/1 | 0/1 | 0/1 | 010 | x/x | 1/1 | x | 10 | 0/00 |
+| SUB  | 0/1 | 0/0 | 0/1 | 0/1 | 0/1 | 0/1 | 110 | x/x | 1/1 | x | 10 | 0/00 |
+| INCA | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 010 | x/x | 1/0 | x | 10 | 0/10 |
+| AND  | 0/1 | 0/0 | 0/1 | 0/1 | 0/1 | 0/1 | 000 | x/x | 0/0 | x | 10 | 0/00 |
+| ADDI | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 010 | x/x | 1/0 | x | 10 | 0/01 |
+| ORI  | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 001 | x/x | 1/0 | x | 10 | 0/01 |
+| ROL  | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 100 | x/x | 1/0 | x | 10 | 0/00 |
+| ROR  | 0/1 | 0/0 | 0/1 | 0/0 | 0/1 | 0/1 | 101 | x/x | 1/0 | x | 10 | 0/00 |
+| CLRA | 0/1 | 0/0 | 1/0 | 0/0 | xx | xx | XXX | x/x | 1/0 | x | xx | x/xx |
+| CLRB | 0/1 | 0/0 | 0/0 | 1/0 | xx | xx | XXX | x/x | 0/1 | x | xx | x/xx |
+| CLRC | 0/0 | 0/0 | 0/0 | 0/0 | 1/0 | 0/0 | XXX | x/x | x/x | x | xx | x/xx |
+| CLRZ | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | 1/0 | XXX | x/x | x/x | x | xx | x/xx |
+| PC <= PC+4 | 0/0 | 1/1 | 0/0 | 0/0 | 0/0 | 0/0 | XXX | x/x | x/x | x | xx | x/xx |
+| IR <= M[INST] | 0/1 | 0/0 | 0/0 | 0/0 | 0/0 | 0/0 | XXX | x/x | x/x | x | 00 | x/xx |
+| PC <= IR[15..0] | 0/0 | 1/0 | 0/0 | 0/0 | 0/0 | 0/0 | XXX | x/x | x/x | x | xx | x/xx |
+
 ## | Waveform Simulations | ![Link](waveforms.pdf) |
