@@ -1,11 +1,55 @@
 # 32-Bit CPU Control Unit in VHDL
 
-This project is a VHDL-based Control Unit designed to drive the data-path of a 32-bit CPU, implemented and simulated using Quartus II on an Altera FPGA. The control unit decodes a 32-bit instruction register, manages a 3-state FSM, and generates all control signals needed for the registers, ALU, and MUXes in the CPU data-path.
+This project is a VHDL-based 32-Bit CPU Control Unit designed and verified using Quartus II on an Altera FPGA. This was originally a lab from my class, COE608 (Computer Organization and Architecture), where I needed to design a control unit that drives the full data-path of a 32-bit CPU — decoding instructions, managing a 3-state FSM, and generating all control signals for the registers, ALU, MUXes, and memory unit — and verify its behaviour through functional simulation waveforms.
 
 ## Features
-* 3-state Moore FSM (T0, T1, T2) that sequences instruction execution, with an enable/reset input to pause and resume operation.
-* Operation Decoder that reads the opcode (INST[31..28]) and function code (INST[27..24]) alongside status bits (Carry and Zero) to correctly set all data-path control signals using case statements.
+* 3-state Moore FSM (T0, T1, T2) that sequences instruction execution across three clock cycles, with an enable/reset input that holds the CPU at state T0 until released.
+* Operation Decoder that reads the opcode (INST[31..28]) and function code (INST[27..24]) alongside Carry and Zero status bits to correctly drive all data-path control signals.
 * Memory Signal Generator that handles Write Enable (wen) and Enable (en) signals with correct setup and hold timing for load and store memory operations, sensitive to both clk and mclk.
-* Supports 20+ instructions including LDAI, LDBI, LDA, LDB, STA, STB, LUI, JMP, BEQ, BNE, ADD, ADDI, SUB, INCA, DECA, ROL, ROR, AND, ANDI, ORI, CLRA, CLRB, CLRC, CLRZ, TSTZ, and TSTC.
-* Conditional branching support via TSTZ and TSTC, which increment the PC only when the corresponding status flag is set.
-* Full functional simulation waveforms verifying correct control signal output for all supported instructions across all three execution states.
+* Supports 25+ instructions: LDAI, LDBI, LDA, LDB, STA, STB, LUI, JMP, BEQ, BNE, ADD, ADDI, SUB, INCA, DECA, ROL, ROR, AND, ANDI, ORI, CLRA, CLRB, CLRC, CLRZ, TSTZ, and TSTC.
+* Conditional branching via TSTZ and TSTC, which conditionally increment the PC only when the Z or C status flag is asserted.
+* Complete control signal table covering CLR/LD for registers A, B, C, Z, PC load/increment, ALU opcode, EN/WEN, A/B MUX, REG MUX, DATA MUX, IM_MUX1, and IM_MUX2 for every supported instruction.
+* Full functional simulation waveforms validating correct control signal output for all 25+ instructions across all three execution states.
+
+## Simulation Waveforms
+
+**LDAI** – Load immediate value into register A
+![LDAI Waveform](LDAI_waveform.png)
+
+**LDA** – Load register A from data memory
+![LDA Waveform](LDA_waveform.png)
+
+**ADD** – Add registers A and B, store result in A
+![ADD Waveform](ADD_waveform.png)
+
+**SUB** – Subtract B from A, store result in A
+![SUB Waveform](SUB_waveform.png)
+
+## Waveform Simulations
+
+| Instruction | Waveform |
+|-------------|----------|
+| LDAI | ![LDAI](waveforms/LDAI.png) |
+| LDBI | ![LDBI](waveforms/LDBI.png) |
+| LDA | ![LDA](waveforms/LDA.png) |
+| LDB | ![LDB](waveforms/LDB.png) |
+| STA | ![STA](waveforms/STA.png) |
+| STB | ![STB](waveforms/STB.png) |
+| LUI | ![LUI](waveforms/LUI.png) |
+| JMP | ![JMP](waveforms/JMP.png) |
+| BEQ | ![BEQ](waveforms/BEQ.png) |
+| BNE | ![BNE](waveforms/BNE.png) |
+| ADD | ![ADD](waveforms/ADD.png) |
+| ADDI | ![ADDI](waveforms/ADDI.png) |
+| SUB | ![SUB](waveforms/SUB.png) |
+| INCA | ![INCA](waveforms/INCA.png) |
+| DECA | ![DECA](waveforms/DECA.png) |
+| ROL | ![ROL](waveforms/ROL.png) |
+| ROR | ![ROR](waveforms/ROR.png) |
+| AND | ![AND](waveforms/AND.png) |
+| ANDI | ![ANDI](waveforms/ANDI.png) |
+| ORI | ![ORI](waveforms/ORI.png) |
+| CLRA | ![CLRA](waveforms/CLRA.png) |
+| CLRB | ![CLRB](waveforms/CLRB.png) |
+| CLRC | ![CLRC](waveforms/CLRC.png) |
+| CLRZ | ![CLRZ](waveforms/CLRZ.png) |
