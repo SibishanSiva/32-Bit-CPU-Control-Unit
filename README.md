@@ -11,31 +11,4 @@ This project is a VHDL-based 32-Bit CPU Control Unit designed and verified using
 * Complete control signal table covering CLR/LD for registers A, B, C, Z, PC load/increment, ALU opcode, EN/WEN, A/B MUX, REG MUX, DATA MUX, IM_MUX1, and IM_MUX2 for every supported instruction.
 * Full functional simulation waveforms validating correct control signal output for all 25+ instructions across all three execution states.
 
-## Waveform Simulations
-
-| Instruction | Waveform |
-|-------------|----------|
-| LDAI | ![LDAI](waveforms/LDAI.png) |
-| LDBI | ![LDBI](waveforms/LDBI.png) |
-| LDA | ![LDA](waveforms/LDA.png) |
-| LDB | ![LDB](waveforms/LDB.png) |
-| STA | ![STA](waveforms/STA.png) |
-| STB | ![STB](waveforms/STB.png) |
-| LUI | ![LUI](waveforms/LUI.png) |
-| JMP | ![JMP](waveforms/JMP.png) |
-| BEQ | ![BEQ](waveforms/BEQ.png) |
-| BNE | ![BNE](waveforms/BNE.png) |
-| ADD | ![ADD](waveforms/ADD.png) |
-| ADDI | ![ADDI](waveforms/ADDI.png) |
-| SUB | ![SUB](waveforms/SUB.png) |
-| INCA | ![INCA](waveforms/INCA.png) |
-| DECA | ![DECA](waveforms/DECA.png) |
-| ROL | ![ROL](waveforms/ROL.png) |
-| ROR | ![ROR](waveforms/ROR.png) |
-| AND | ![AND](waveforms/AND.png) |
-| ANDI | ![ANDI](waveforms/ANDI.png) |
-| ORI | ![ORI](waveforms/ORI.png) |
-| CLRA | ![CLRA](waveforms/CLRA.png) |
-| CLRB | ![CLRB](waveforms/CLRB.png) |
-| CLRC | ![CLRC](waveforms/CLRC.png) |
-| CLRZ | ![CLRZ](waveforms/CLRZ.png) |
+## | Waveform Simulations | ![Link](waveform.pdf) |
