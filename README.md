@@ -11,20 +11,6 @@ This project is a VHDL-based 32-Bit CPU Control Unit designed and verified using
 * Complete control signal table covering CLR/LD for registers A, B, C, Z, PC load/increment, ALU opcode, EN/WEN, A/B MUX, REG MUX, DATA MUX, IM_MUX1, and IM_MUX2 for every supported instruction.
 * Full functional simulation waveforms validating correct control signal output for all 25+ instructions across all three execution states.
 
-## Simulation Waveforms
-
-**LDAI** – Load immediate value into register A
-![LDAI Waveform](LDAI_waveform.png)
-
-**LDA** – Load register A from data memory
-![LDA Waveform](LDA_waveform.png)
-
-**ADD** – Add registers A and B, store result in A
-![ADD Waveform](ADD_waveform.png)
-
-**SUB** – Subtract B from A, store result in A
-![SUB Waveform](SUB_waveform.png)
-
 ## Waveform Simulations
 
 | Instruction | Waveform |
